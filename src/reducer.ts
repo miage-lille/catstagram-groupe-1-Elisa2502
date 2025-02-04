@@ -1,25 +1,19 @@
 import { Loop, liftState } from 'redux-loop';
 import { compose } from 'redux';
 import { Actions } from './types/actions.type';
+import fakeData from "./fake-datas.json";
+import { Picture } from './types/picture.type';
 
 export type State = {
   counter: number,
+  pictures: Picture [],
 }
 
 export const defaultState: State = {
-  counter: 0
+  counter: 0,
+  pictures: fakeData,
 }
 
-
-type Increment = { type: 'INCREMENT' };
-type Decrement = { type: 'DECREMENT' };
-
-const increment = (): Increment => ({ type: 'INCREMENT' });
-const decrement = (): Decrement => ({ type: 'DECREMENT' });
-
-type Actions = 
-  | Increment
-  | Decrement
 
 
 export const reducer = (state: State | undefined, action: Actions): State | Loop<State> => {
@@ -27,12 +21,15 @@ export const reducer = (state: State | undefined, action: Actions): State | Loop
   switch (action.type) {
     case 'INCREMENT': 
       return { ...state, counter: state.counter + 1};
+
     case 'DECREMENT': 
       return { ...state, counter: Math.max(3, state.counter - 1)};
       
-    // case 'SELECT_PICTURE':
-    //   throw 'Not Implemented';
-    // case 'CLOSE_MODAL':
+    case 'SELECT_PICTURE':
+      
+      return {...state, pictures: state.pictures.slice(Math.min(state.counter), state.pictures.length)};
+
+    //case 'CLOSE_MODAL':
     //   throw 'Not Implemented';
     // case 'FETCH_CATS_REQUEST':
     //   throw 'Not Implemented';
@@ -47,7 +44,7 @@ export const counterSelector = (state: State) => {
   return state.counter;
 };
 export const picturesSelector = (state: State) => {
-  throw 'Not Implemented';
+  return state.pictures;
 };
 export const getSelectedPicture = (state: State) => {
   throw 'Not Implemented';

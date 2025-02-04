@@ -1,5 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { picturesSelector } from '../reducer';
+import { Picture } from '../types/picture.type';
 
 const Container = styled.div`
   padding: 1rem;
@@ -18,7 +21,25 @@ const Image = styled.img`
   }
 `;
 const Pictures = () => {
-  return null;
+  const pictures = useSelector(picturesSelector);
+  return (
+    <Container>
+       {pictures.map((pic: Picture, index: number) => (
+          <img
+            key={index}
+            src={pic.previewFormat}
+            alt={`Thumbnail by ${pic.author}`}
+            style={{
+              width: "100px",
+              height: "100px",
+              objectFit: "cover",
+              borderRadius: "5px",
+            }}
+          />
+        ))}
+     
+    </Container>
+  )
 };
 
 export default Pictures;
