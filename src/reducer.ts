@@ -14,8 +14,6 @@ export const defaultState: State = {
   pictures: fakeData,
 }
 
-
-
 export const reducer = (state: State | undefined, action: Actions): State | Loop<State> => {
   if (!state) return defaultState; // mandatory by redux
   switch (action.type) {
@@ -29,14 +27,17 @@ export const reducer = (state: State | undefined, action: Actions): State | Loop
       
       return {...state, pictures: state.pictures.slice(Math.min(state.counter), state.pictures.length)};
 
-    //case 'CLOSE_MODAL':
-    //   throw 'Not Implemented';
-    // case 'FETCH_CATS_REQUEST':
-    //   throw 'Not Implemented';
-    // case 'FETCH_CATS_COMMIT':
-    //   throw 'Not Implemented';
-    // case 'FETCH_CATS_ROLLBACK':
-    //   throw 'Not Implemented';
+    case 'CLOSE_MODAL':
+      throw 'Not Implemented';
+
+    case 'FETCH_CATS_REQUEST':
+      throw 'Not Implemented';
+
+    case 'FETCH_CATS_COMMIT':
+      throw 'Not Implemented';
+      
+    case 'FETCH_CATS_ROLLBACK':
+      throw 'Not Implemented';
   }
 };
 

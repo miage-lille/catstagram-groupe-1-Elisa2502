@@ -20,6 +20,7 @@ const Image = styled.img`
     transform: scale(1.2);
   }
 `;
+
 const Pictures = () => {
   const pictures = useSelector(picturesSelector);
   return (

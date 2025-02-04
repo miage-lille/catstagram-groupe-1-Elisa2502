@@ -2,7 +2,15 @@ import { Decrement, FetchCatsCommit, FetchCatsRequest, FetchCatsRollback, Increm
 
 export const increment = (): Increment => ({ type: 'INCREMENT' });
 export const decrement = (): Decrement => ({ type: 'DECREMENT' });
-export const selectpicture = (): SelectPicture => ({ type: 'SELECT_PICTURE' });
+export const selectpicture = (): SelectPicture => ({
+  type: 'SELECT_PICTURE',
+  picture: {
+    previewFormat: '',
+    webFormat: '',
+    author: '',
+    largeFormat: ''
+  }
+});
 
 type Actions = 
   | Increment
