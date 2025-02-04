@@ -1,7 +1,21 @@
-import { Decrement, FetchCatsCommit, FetchCatsRequest, FetchCatsRollback, Increment } from './types/actions.type';
+import { Decrement, FetchCatsCommit, FetchCatsRequest, FetchCatsRollback, Increment, SelectPicture } from './types/actions.type';
 
 export const increment = (): Increment => ({ type: 'INCREMENT' });
 export const decrement = (): Decrement => ({ type: 'DECREMENT' });
+export const selectpicture = (): SelectPicture => ({
+  type: 'SELECT_PICTURE',
+  picture: {
+    previewFormat: '',
+    webFormat: '',
+    author: '',
+    largeFormat: ''
+  }
+});
+
+type Actions = 
+  | Increment
+  | Decrement
+  | SelectPicture
 
 export const fetchCatsRequest = (): FetchCatsRequest => ({
   type: 'FETCH_CATS_REQUEST',
